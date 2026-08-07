@@ -105,8 +105,8 @@ function ReportScamPage() {
                   Email
                 </label>
                 <input id="email" name="email" type="email" maxLength={255} className={field} />
-                {errors.email ? (
-                  <p className="mt-2 text-xs text-destructive">{errors.email}</p>
+                {errors['email'] ? (
+                  <p className="mt-2 text-xs text-destructive">{errors['email']}</p>
                 ) : null}
               </div>
 
@@ -124,7 +124,7 @@ function ReportScamPage() {
                     </option>
                   ))}
                 </select>
-                {errors.type ? <p className="mt-2 text-xs text-destructive">{errors.type}</p> : null}
+                {errors['type'] ? <p className="mt-2 text-xs text-destructive">{errors['type']}</p> : null}
               </div>
 
               <div className="mt-5">
@@ -138,8 +138,8 @@ function ReportScamPage() {
                   maxLength={2000}
                   className="mt-2 w-full rounded-2xl border border-input bg-background/60 p-4 text-sm outline-none transition-colors focus:border-accent/70"
                 />
-                {errors.description ? (
-                  <p className="mt-2 text-xs text-destructive">{errors.description}</p>
+                {errors['description'] ? (
+                  <p className="mt-2 text-xs text-destructive">{errors['description']}</p>
                 ) : null}
               </div>
 

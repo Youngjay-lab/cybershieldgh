@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PasswordCheckerRouteImport } from './routes/password-checker'
 import { Route as PhishingQuizRouteImport } from './routes/phishing-quiz'
+import { Route as ReportScamRouteImport } from './routes/report-scam'
 import { Route as SecurityChecklistRouteImport } from './routes/security-checklist'
 import { Route as SecurityTipsRouteImport } from './routes/security-tips'
 import { Route as ThreatsRouteImport } from './routes/threats'
@@ -29,6 +30,11 @@ const PasswordCheckerRoute = PasswordCheckerRouteImport.update({
 const PhishingQuizRoute = PhishingQuizRouteImport.update({
   id: '/phishing-quiz',
   path: '/phishing-quiz',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportScamRoute = ReportScamRouteImport.update({
+  id: '/report-scam',
+  path: '/report-scam',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SecurityChecklistRoute = SecurityChecklistRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/password-checker': typeof PasswordCheckerRoute
   '/phishing-quiz': typeof PhishingQuizRoute
+  '/report-scam': typeof ReportScamRoute
   '/security-checklist': typeof SecurityChecklistRoute
   '/security-tips': typeof SecurityTipsRoute
   '/threats': typeof ThreatsRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/password-checker': typeof PasswordCheckerRoute
   '/phishing-quiz': typeof PhishingQuizRoute
+  '/report-scam': typeof ReportScamRoute
   '/security-checklist': typeof SecurityChecklistRoute
   '/security-tips': typeof SecurityTipsRoute
   '/threats': typeof ThreatsRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/password-checker': typeof PasswordCheckerRoute
   '/phishing-quiz': typeof PhishingQuizRoute
+  '/report-scam': typeof ReportScamRoute
   '/security-checklist': typeof SecurityChecklistRoute
   '/security-tips': typeof SecurityTipsRoute
   '/threats': typeof ThreatsRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/password-checker'
     | '/phishing-quiz'
+    | '/report-scam'
     | '/security-checklist'
     | '/security-tips'
     | '/threats'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/password-checker'
     | '/phishing-quiz'
+    | '/report-scam'
     | '/security-checklist'
     | '/security-tips'
     | '/threats'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/password-checker'
     | '/phishing-quiz'
+    | '/report-scam'
     | '/security-checklist'
     | '/security-tips'
     | '/threats'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PasswordCheckerRoute: typeof PasswordCheckerRoute
   PhishingQuizRoute: typeof PhishingQuizRoute
+  ReportScamRoute: typeof ReportScamRoute
   SecurityChecklistRoute: typeof SecurityChecklistRoute
   SecurityTipsRoute: typeof SecurityTipsRoute
   ThreatsRoute: typeof ThreatsRoute
@@ -129,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/phishing-quiz'
       fullPath: '/phishing-quiz'
       preLoaderRoute: typeof PhishingQuizRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/report-scam': {
+      id: '/report-scam'
+      path: '/report-scam'
+      fullPath: '/report-scam'
+      preLoaderRoute: typeof ReportScamRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/security-checklist': {
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PasswordCheckerRoute: PasswordCheckerRoute,
   PhishingQuizRoute: PhishingQuizRoute,
+  ReportScamRoute: ReportScamRoute,
   SecurityChecklistRoute: SecurityChecklistRoute,
   SecurityTipsRoute: SecurityTipsRoute,
   ThreatsRoute: ThreatsRoute,
