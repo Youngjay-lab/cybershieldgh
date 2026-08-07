@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as PasswordCheckerRouteImport } from './routes/password-checker'
 import { Route as PhishingQuizRouteImport } from './routes/phishing-quiz'
 import { Route as ReportScamRouteImport } from './routes/report-scam'
@@ -20,6 +21,11 @@ import { Route as ThreatsRouteImport } from './routes/threats'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PasswordCheckerRoute = PasswordCheckerRouteImport.update({
@@ -55,6 +61,7 @@ const ThreatsRoute = ThreatsRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/password-checker': typeof PasswordCheckerRoute
   '/phishing-quiz': typeof PhishingQuizRoute
   '/report-scam': typeof ReportScamRoute
@@ -64,6 +71,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/password-checker': typeof PasswordCheckerRoute
   '/phishing-quiz': typeof PhishingQuizRoute
   '/report-scam': typeof ReportScamRoute
@@ -74,6 +82,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/password-checker': typeof PasswordCheckerRoute
   '/phishing-quiz': typeof PhishingQuizRoute
   '/report-scam': typeof ReportScamRoute
@@ -85,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/contact'
     | '/password-checker'
     | '/phishing-quiz'
     | '/report-scam'
@@ -94,6 +104,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/contact'
     | '/password-checker'
     | '/phishing-quiz'
     | '/report-scam'
@@ -103,6 +114,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/contact'
     | '/password-checker'
     | '/phishing-quiz'
     | '/report-scam'
@@ -113,6 +125,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactRoute: typeof ContactRoute
   PasswordCheckerRoute: typeof PasswordCheckerRoute
   PhishingQuizRoute: typeof PhishingQuizRoute
   ReportScamRoute: typeof ReportScamRoute
@@ -128,6 +141,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/password-checker': {
@@ -177,6 +197,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactRoute: ContactRoute,
   PasswordCheckerRoute: PasswordCheckerRoute,
   PhishingQuizRoute: PhishingQuizRoute,
   ReportScamRoute: ReportScamRoute,
